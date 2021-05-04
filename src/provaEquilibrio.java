@@ -3,17 +3,17 @@ import java.util.Random;
 
 public class provaEquilibrio {
     private final static int NUM_ELEMENTS = 4;
-    private final static int MAX = 3;
+    private final static int MAX = 10;
     private final static int MIN = 1;
 
     public static void main(String[] args) {
-        int[][] eq = new int[4][4];
+        int[][] eq = new int[NUM_ELEMENTS][NUM_ELEMENTS];
         setZeros(eq);
         setArray(eq);
         //System.out.println(eq);
         for (int i = 0; i < eq.length; i++) {
             for (int j = 0; j < eq.length; j++) {
-                System.out.printf("%2d", eq[i][j]);
+                System.out.printf("%2d  ", eq[i][j]);
             }
             System.out.printf("%n");
         }
@@ -55,22 +55,8 @@ public class provaEquilibrio {
 
             for (j = 0; j < eq[0].length -1; j++)
                 if ( sommeR[j] > sommeC[j])
-
-                    eq[NUM_ELEMENTS-1][j] =  sommeR[j] - sommeC[j];
+                    eq[j][NUM_ELEMENTS-1] =  sommeR[j] - sommeC[j];
                 else eq[NUM_ELEMENTS-1][j] =  sommeC[j] - sommeR[j];
-
-
-
-
-            //j <i arriva a diag
-            //riempi cell random in base a t or f
-            // fai somma quando arrivi length-1
-               /* if(checkIfZERO(eq[i][j+1]))  // true if the next column on same row in a 0
-                    break;*/
-
-
-
-
         }
     }
 
