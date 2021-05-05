@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class provaEquilibrio {
@@ -7,56 +8,57 @@ public class provaEquilibrio {
     private final static int MIN = 1;
 
     public static void main(String[] args) {
-        int[][] eq = new int[NUM_ELEMENTS][NUM_ELEMENTS];
+        //int[][] eq = new int[NUM_ELEMENTS][NUM_ELEMENTS];
+       ArrayList<ArrayList<Integer>> eq = new ArrayList<>();
         setZeros(eq);
         setArray(eq);
         //System.out.println(eq);
-        for (int i = 0; i < eq.length; i++) {
-            for (int j = 0; j < eq.length; j++) {
-                System.out.printf("%2d  ", eq[i][j]);
+
+      for (int i = 0; i < NUM_ELEMENTS; i++) {
+            for (int j = 0; j < eq.size(); j++) {
+                System.out.printf("%2d", eq.get(i).get(j));
             }
             System.out.printf("%n");
         }
     }
 
     //to set the zeros on diagonal
-    public static void setZeros(int[][] eq){
+    public static void setZeros(ArrayList<ArrayList<Integer>> eq){
         int i;
-        for (i = 0; i < eq.length; i++) {
-            eq[i][i] = 0;
+        for (i = 0; i < eq.size(); i++) {
+            eq.get(i).set(i, 0);
         }
     }
 
     /**crea valori in array random**/
-    public static void  setArray(int[][] eq){
+    public static void  setArray(ArrayList<ArrayList<Integer>> eq){
         int i, j;
         int[] sommeR = new int[NUM_ELEMENTS];
         int[] sommeC = new int[NUM_ELEMENTS];
-        //ctrl D
+        //ctrl d
 
-        for (i = 1; i < eq.length -1; i++) {
+        for (i = 1; i < NUM_ELEMENTS -2; i++) {
             for (j = 0; j < i; j++) {
                 if (randomRangeMaxMin(MAX, MIN) % 2 == 0) {
-                    eq[i][j] = randomRangeMaxMin(MAX, MIN);
-                    eq[j][i] = 0;
+                    eq.get(i).set(j,randomRangeMaxMin(MAX, MIN));  //errore qui
+                    eq.get(j).set(i, 0);
                 } else {
-                    eq[j][i] = randomRangeMaxMin(MAX, MIN);
-                    eq[i][j] = 0;
-
+                    eq.get(j).set(i,randomRangeMaxMin(MAX, MIN));
+                    eq.get(i).set(j, 0);
                 }
             }
 
             for (int k = 0; k < sommeR.length; k++) {
                 for (int l = 0; l < sommeR.length; l++) {
-                    sommeR[k] += eq[l][k];
-                    sommeC[k] += eq[k][l];
+                    sommeR[k] += eq.get(l).get(k);
+                    sommeC[k] += eq.get(k).get(l);
                 }
             }
 
-            for (j = 0; j < eq[0].length -1; j++)
+            for (j = 0; j < eq.size() -2; j++)
                 if ( sommeR[j] > sommeC[j])
-                    eq[j][NUM_ELEMENTS-1] =  sommeR[j] - sommeC[j];
-                else eq[NUM_ELEMENTS-1][j] =  sommeC[j] - sommeR[j];
+                    eq.get(j).set(NUM_ELEMENTS-1,sommeR[j] - sommeC[j]);
+                else eq.get(NUM_ELEMENTS-1).set(j,sommeR[j] - sommeC[j]);
         }
     }
 
