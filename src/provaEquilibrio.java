@@ -25,7 +25,7 @@ public class provaEquilibrio {
     //to set the zeros on diagonal
     public static void setZeros(ArrayList<ArrayList<Integer>> eq){
         int i;
-        for (i = 0; i < eq.size(); i++) {
+        for (i = 0; i < NUM_ELEMENTS; i++) {
             eq.get(i).set(i, 0);
         }
     }
@@ -55,7 +55,7 @@ public class provaEquilibrio {
                 }
             }
 
-            for (j = 0; j < eq.size() -2; j++)
+            for (j = 0; j < NUM_ELEMENTS -2; j++)
                 if ( sommeR[j] > sommeC[j])
                     eq.get(j).set(NUM_ELEMENTS-1,sommeR[j] - sommeC[j]);
                 else eq.get(NUM_ELEMENTS-1).set(j,sommeR[j] - sommeC[j]);
