@@ -3,13 +3,13 @@ import java.util.Random;
 
 public class Equilibrio {
 
-    private int MAX = TamaConstants.V;
-    private int MIN = 1;
+    private final int MAX = TamaConstants.V;
+    private final int MIN = 1;
 
     private Graph equilibrio;
 
     public Equilibrio(int elements_num) {
-        equilibrio = new Graph(elements_num);
+        this.equilibrio = new Graph(elements_num);
         setEquilibrio();
     }
 
