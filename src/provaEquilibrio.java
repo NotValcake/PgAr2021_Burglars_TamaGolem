@@ -36,7 +36,7 @@ public class provaEquilibrio {
         setArray(eq);
         //System.out.println(eq);
 
-
+        System.out.printf("%n%n");
       for (int i = 0; i < NUM_ELEMENTS; i++) {
             for (int j = 0; j < eq.size(); j++) {
                 System.out.printf("%2d", eq.get(i).get(j));
@@ -60,17 +60,17 @@ public class provaEquilibrio {
         int[] sommeC = new int[NUM_ELEMENTS];
         //ctrl d
 
-        for (i = 1; i < NUM_ELEMENTS -2; i++) {
+        for (i = 1; i < NUM_ELEMENTS -1; i++) {
             for (j = 0; j < i; j++) {
                 if (randomRangeMaxMin(MAX, MIN) % 2 == 0) {
-                    eq.get(i).set(j,randomRangeMaxMin(MAX, MIN));  //errore qui
+                    eq.get(i).set(j, randomRangeMaxMin(MAX, MIN));  //errore qui
                     eq.get(j).set(i, 0);
                 } else {
-                    eq.get(j).set(i,randomRangeMaxMin(MAX, MIN));
+                    eq.get(j).set(i, randomRangeMaxMin(MAX, MIN));
                     eq.get(i).set(j, 0);
                 }
             }
-
+        }
             for (int k = 0; k < sommeR.length; k++) {
                 for (int l = 0; l < sommeR.length; l++) {
                     sommeR[k] += eq.get(l).get(k);
@@ -78,12 +78,12 @@ public class provaEquilibrio {
                 }
             }
 
-            for (j = 0; j < NUM_ELEMENTS -2; j++)
+            for (j = 0; j < NUM_ELEMENTS -1; j++)
                 if ( sommeR[j] > sommeC[j])
                     eq.get(j).set(NUM_ELEMENTS-1,sommeR[j] - sommeC[j]);
-                else eq.get(NUM_ELEMENTS-1).set(j,sommeR[j] - sommeC[j]);
+                else eq.get(NUM_ELEMENTS-1).set(j,sommeC[j] - sommeR[j]);
         }
-    }
+
 
 
     public static int randomRangeMaxMin(int max, int min){
