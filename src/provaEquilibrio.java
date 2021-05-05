@@ -10,9 +10,32 @@ public class provaEquilibrio {
     public static void main(String[] args) {
         //int[][] eq = new int[NUM_ELEMENTS][NUM_ELEMENTS];
        ArrayList<ArrayList<Integer>> eq = new ArrayList<>();
-        setZeros(eq);
+        //setZeros(eq);
+
+        //inizializzo array per riga
+        for (int i = 0; i < NUM_ELEMENTS; i++) {
+                eq.add(new ArrayList());
+            }
+//set mat con zeri
+        for (int i = 0; i < NUM_ELEMENTS; i++) {
+            for (int j = 0; j <NUM_ELEMENTS; j++) {
+                eq.get(i).add(j,0);
+            }
+            System.out.printf("%n");
+        }
+  //stampa Arraylist
+        System.out.printf("%n%n");
+        for (int i = 0; i < NUM_ELEMENTS; i++) {
+            for (int j = 0; j < eq.size(); j++) {
+                System.out.printf("%2d", eq.get(i).get(j));
+            }
+            System.out.printf("%n");
+        }
+
+
         setArray(eq);
         //System.out.println(eq);
+
 
       for (int i = 0; i < NUM_ELEMENTS; i++) {
             for (int j = 0; j < eq.size(); j++) {
@@ -25,7 +48,7 @@ public class provaEquilibrio {
     //to set the zeros on diagonal
     public static void setZeros(ArrayList<ArrayList<Integer>> eq){
         int i;
-        for (i = 0; i < NUM_ELEMENTS; i++) {
+        for (i = 0; i < NUM_ELEMENTS-1; i++) {
             eq.get(i).set(i, 0);
         }
     }
