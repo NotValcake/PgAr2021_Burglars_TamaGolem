@@ -13,7 +13,7 @@ public class Giocatore {
     /**
      * @return true se almeno un TamaGolem in ArrayList tamaGolems del giocatore è vivo
      **/
-    public boolean checkTamaGolems() {
+    public boolean isAvailableTamaGolem() {
         for (TamaGolem tg : tamaGolems) {
             if (tg.isAlive())
                 return true;
@@ -25,7 +25,7 @@ public class Giocatore {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome) {   //chiesto all'utente
         this.nome = nome;
     }
 

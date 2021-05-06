@@ -4,6 +4,7 @@ public class Graph {
 
     private final ArrayList<ArrayList<Integer>> adjmat = new ArrayList<>();
 
+    //todo v*v is the size of the graph ?
     public Graph(int v){
         for (int i = 0; i < v; i++) {
             ArrayList<Integer> edge = new ArrayList<>(v);

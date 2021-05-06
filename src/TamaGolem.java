@@ -19,6 +19,9 @@ public class TamaGolem {
         setPietre(pietre);
     }
 
+    public TamaGolem() {//todo temporaneo
+    }
+
     public String getName() {
         return name;
     }

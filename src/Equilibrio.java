@@ -13,6 +13,7 @@ public class Equilibrio {
         setEquilibrio();
     }
     //TODO modificare algoritmo in modo che sia rispettata la condizione sup(W)<= V
+
     /**crea valori in array random**/
     private void  setEquilibrio(){
         int[] sommeR = new int[equilibrio.getVertexNum()];
@@ -27,7 +28,7 @@ public class Equilibrio {
                         equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
                         equilibrio.getVertex(j).set(i, 0);
                     }while (prev ==  equilibrio.getVertex(i).get(j));
-                    prev = equilibrio.getVertex(i).get(j);  //TODO non è set set(j, randomRangeMaxMin(MAX, MIN) ?
+                    prev = equilibrio.getVertex(i).get(j);
                 } else {
                     do {
                         equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
