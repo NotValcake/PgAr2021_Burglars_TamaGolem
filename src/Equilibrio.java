@@ -27,7 +27,7 @@ public class Equilibrio {
                         equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
                         equilibrio.getVertex(j).set(i, 0);
                     }while (prev ==  equilibrio.getVertex(i).get(j));
-                    prev = equilibrio.getVertex(i).get(j);
+                    prev = equilibrio.getVertex(i).get(j);  //TODO non è set set(j, randomRangeMaxMin(MAX, MIN) ?
                 } else {
                     do {
                         equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
