@@ -2,19 +2,19 @@ import java.util.ArrayList;//prova
 
 public class Partita {
 
-    Giocatore g1;
-    Giocatore g2;
+    private Giocatore g1;
+    private Giocatore g2;
 
-    int difficolta;
+    private int difficolta;
 
-    Equilibrio equilibrio;
+    private Equilibrio equilibrio;
 
-    ArrayList<Integer> scorta_pietre;
+    private ArrayList<Integer> scorta_pietre = new ArrayList<>();
 
-    Giocatore vincitore;
+    private Giocatore vincitore;
 
-    ArrayList<String> ElementiG1 = new ArrayList<>();  //prendi arraylist di enum scelti
-    ArrayList<String> ElementiG2 = new ArrayList<>();
+    private ArrayList<String> ElementiG1 = new ArrayList<>();  //prendi arraylist di enum scelti
+    private ArrayList<String> ElementiG2 = new ArrayList<>();
 
     public Partita(Giocatore g1, Giocatore g2, int difficolta) {
 
@@ -37,7 +37,7 @@ public class Partita {
     }
 
     public int testaOCroce(){
-        return Equilibrio.randomRangeMaxMin(0,1);
+        return Equilibrio.randomRangeMaxMin(1,0);
     }
 
     /**
@@ -87,5 +87,11 @@ public class Partita {
     public Equilibrio rivelaEquilibrio(){
         return this.equilibrio;
     }
+
+    public int getDifficolta(){
+        return this.difficolta;
+    }
+
+    //TODO fare in modo che per scegliere le pietre si attinga dalla scorta
 
 }

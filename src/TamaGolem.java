@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.Queue;
+import java.util.*;
 
 public class TamaGolem {
 
     private String name;
     private final int max_pietre = TamaConstants.P;
-    private Queue<Integer> pietre;
+    private Queue<Integer> pietre = new ArrayDeque<>();
     private int hp = TamaConstants.V;
     private boolean alive = true;
 
@@ -19,6 +18,8 @@ public class TamaGolem {
         setPietre(pietre);
     }
 
+    public TamaGolem(String name) {//todo temporaneo
+    }
     public TamaGolem() {//todo temporaneo
     }
 
@@ -42,9 +43,7 @@ public class TamaGolem {
      * @param pietre ArrayList<Integer> contenente le pietre da assegnare al tamagolem
      */
     public void setPietre(ArrayList<Integer> pietre) {
-        for (Integer p: pietre) {
-            this.pietre.offer(p);
-        }
+            this.pietre.addAll(pietre);
     }
 
     /**
