@@ -4,7 +4,7 @@
 .idea/
 PgAr2021_Burglars_TamaGolem.iml
 
-bin
+bin/
 
 # Compiled class file
 *.class

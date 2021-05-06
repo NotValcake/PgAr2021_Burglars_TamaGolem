@@ -12,7 +12,7 @@ public class Equilibrio {
         this.equilibrio = new Graph(elements_num);
         setEquilibrio();
     }
-
+    //TODO modificare algoritmo in modo che sia rispettata la condizione sup(W)<= V
     /**crea valori in array random**/
     private void  setEquilibrio(){
         int[] sommeR = new int[equilibrio.getVertexNum()];
