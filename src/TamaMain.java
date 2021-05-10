@@ -2,10 +2,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TamaMain {
-    //TODO creare classe di interazione per l'utente, altrimenti è impossibile verificare che funzioni correttamente
     public static void main(String[] args) {
         UserInterface.startMatch();
-
+//FIXME facciamo prima input info di un giocatore poi il seconda in metodo così da non ripetere le istruzioni?
+//TODO NB puoi avere la lista dei TODO e FIXME cliccando su TODO in basso a sinistra per non perderne nessuno (accanto a Git Run Terminal ecc)
         String g1_name = UserInterface.getPlayerName(1);
         String g2_name = UserInterface.getPlayerName(2);
 
@@ -29,12 +29,14 @@ public class TamaMain {
 
         Partita p = new Partita(g1, g2, TamaConstants.BEGINNER_L);
 
-        ArrayList<Integer> pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
+        ArrayList<Integer> pietre_1 = UserInterface.getPietre(p.getScorta(), g1); //pietre_1 contiene pietre scelte dal gioc.
         ArrayList<Integer> pietre_2 = UserInterface.getPietre(p.getScorta(), g2);
 
-        p.evocazione(g1, pietre_1);
+        p.evocazione(g1, pietre_1);  //ctrl che tamagolem sia vivo, e setPietre(pietre_1) SCELTE
+        p.aggiornaScortaP(pietre_1);//per togliere le pietre usate e aggiornare la scorta comune per elemento
         p.evocazione(g2, pietre_2);
-
+        p.aggiornaScortaP(pietre_2);
+ //  TODO add scorta per elemento avrà <= 0 pietre se finita, in userinterface while( valorescortaPietre <= 0 allora stampa successiva)
         int turno = 1;
 
         while(p.checkifPartitaContinua() == 0){

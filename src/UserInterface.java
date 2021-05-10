@@ -26,6 +26,11 @@ public class UserInterface {
         return name.strip();
     }
 
+
+    //da finire di sistemare
+    //  TODO add scorta per elemento avrà <= 0 pietre se finita,
+    //   in userinterface while( valorescortaPietre <= 0 allora stampa successiva)
+    //fixme aggiungere do while con controllo se utente seleziona tra 1 e scorta.size()
     public static ArrayList<Integer> getPietre(ArrayList<Integer> scorta, Giocatore g){
         Scanner in = scannerInit();
         System.out.printf("%s seleziona tre pietre da dare al tuo tamagolem tra quelle disponibili nella scorta: %n", g.getNome());
@@ -36,9 +41,14 @@ public class UserInterface {
         ArrayList<Integer> scelte = new ArrayList<>();
 
         while(scelte.size() < TamaConstants.P){
-            scelte.add(in.nextInt()); //TODO aggiungere controllo pietre valide
-        }
+            int sceltaX= 0;
 
+            while (scorta.get(sceltaX) <= 0 ) { //errore
+                sceltaX = in.nextInt();
+                System.out.println("Pietre non disponibili, scegliere un altro set");
+            }
+            scelte.add(sceltaX); //TODO aggiungere controllo pietre valide, fatto, fare prove
+        }
         return scelte;
     }
 
