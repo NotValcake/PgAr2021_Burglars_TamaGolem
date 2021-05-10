@@ -61,4 +61,8 @@ public class Equilibrio {
         return equilibrio.getEdge(from, to);
     }
 
+    public int getSize(){
+        return equilibrio.getVertexNum();
+    }
+
 }

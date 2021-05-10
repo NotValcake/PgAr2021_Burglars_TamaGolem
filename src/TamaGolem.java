@@ -19,6 +19,7 @@ public class TamaGolem {
     }
 
     public TamaGolem(String name) {//todo temporaneo
+        this.name = name;
     }
     public TamaGolem() {//todo temporaneo
     }

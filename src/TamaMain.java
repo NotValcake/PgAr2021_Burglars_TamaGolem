@@ -1,67 +1,79 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TamaMain {
     //TODO creare classe di interazione per l'utente, altrimenti è impossibile verificare che funzioni correttamente
     public static void main(String[] args) {
+        UserInterface.startMatch();
 
-        ArrayList<Integer> pietre1 = new ArrayList<>();
-        pietre1.add(3);
-        pietre1.add(2);
-        pietre1.add(4);
+        String g1_name = UserInterface.getPlayerName(1);
+        String g2_name = UserInterface.getPlayerName(2);
 
-        ArrayList<Integer> pietre2 = new ArrayList<>();
-        pietre2.add(2);
-        pietre2.add(1);
-        pietre2.add(3);
+        ArrayList<TamaGolem> t1 = new ArrayList<>();
+        ArrayList<TamaGolem> t2 = new ArrayList<>();
 
-        ArrayList<TamaGolem> tg1 = new ArrayList<>();
-        tg1.add(new TamaGolem("tama1"));
-        Giocatore g1 = new Giocatore(tg1, "io");
-
-        ArrayList<TamaGolem> tg2 = new ArrayList<>();
-        tg1.add(new TamaGolem("tama2"));
-        Giocatore g2 = new Giocatore(tg2, "tu");
-
-        Partita partita = new Partita(g1, g2, TamaConstants.BEGINNER_L);
-
-        Equilibrio eq = partita.rivelaEquilibrio();
-
-        for (int i = 0; i < partita.getDifficolta(); i++) {
-            for (int j = 0; j < partita.getDifficolta(); j++) {
-                System.out.print(String.format("%3d", eq.getEquilibrio(i, j)));
-            }
-            System.out.println();
+        while(t1.size() < TamaConstants.G){
+            String tama_name = UserInterface.getTamaName(g1_name);
+            TamaGolem t = new TamaGolem(tama_name);
+            t1.add(t);
         }
 
-        if(partita.testaOCroce() == 0){
-            partita.evocazione(g1, pietre1);
-            partita.evocazione(g2, pietre2);
+        while(t2.size() < TamaConstants.G){
+            String tama_name = UserInterface.getTamaName(g2_name);
+            TamaGolem t = new TamaGolem(tama_name);
+            t2.add(t);
+        }
+
+        Giocatore g1 = new Giocatore(t1, g1_name);
+        Giocatore g2 = new Giocatore(t2, g2_name);
+
+        Partita p = new Partita(g1, g2, TamaConstants.BEGINNER_L);
+
+        ArrayList<Integer> pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
+        ArrayList<Integer> pietre_2 = UserInterface.getPietre(p.getScorta(), g2);
+
+        p.evocazione(g1, pietre_1);
+        p.evocazione(g2, pietre_2);
+
+        int turno = 1;
+
+        while(p.checkifPartitaContinua() == 0){
+            while(g1.getTamagolemInCampo().isAlive() && g2.getTamagolemInCampo().isAlive()){
+                int hp1 = g1.getTamagolemInCampo().getHp();
+                int hp2 = g2.getTamagolemInCampo().getHp();
+
+                UserInterface.annuncioTurno(turno);
+                turno++;
+                p.turno();
+
+                if(hp1 != g1.getTamagolemInCampo().getHp()){
+                    UserInterface.annuncioDanni(g2.getTamagolemInCampo(), g1.getTamagolemInCampo(), hp1-g1.getTamagolemInCampo().getHp());
+                }else if(hp2 != g2.getTamagolemInCampo().getHp()){
+                    UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), hp2-g2.getTamagolemInCampo().getHp());
+                }else UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), 0);
+            }
+            if(!g1.getTamagolemInCampo().isAlive() && g1.isAvailableTamaGolem()){
+                UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
+                pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
+                if(p.evocazione(g1, pietre_1)){
+                    break;
+                }
+            }else if(!g2.getTamagolemInCampo().isAlive() && g2.isAvailableTamaGolem()){
+                UserInterface.annuncioEliminato(g2.getTamagolemInCampo());
+                pietre_2 = UserInterface.getPietre(p.getScorta(), g2);
+                if(!p.evocazione(g2, pietre_2)){
+                    break;
+                }
+            }
+        }
+
+        UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
+
+        if(p.checkifPartitaContinua() == -1){
+            UserInterface.partitaFinita(g2, g1);
         }else{
-            partita.evocazione(g2, pietre2);
-            partita.evocazione(g1, pietre1);
+            UserInterface.partitaFinita(g1, g2);
         }
-
-        int t = 0;
-
-        while (partita.checkifPartitaContinua() == 0){
-            while(partita.turno()){
-                System.out.println("turno " + t++);
-            }
-            if(g1.isAvailableTamaGolem() && g2.isAvailableTamaGolem()) {
-                if (g1.getTamagolemInCampo().isAlive()) {
-                    partita.evocazione(g2, pietre1);
-                } else partita.evocazione(g1, pietre2);
-            }
-        }
-
-        for (int i = 0; i < partita.getDifficolta(); i++) {
-            for (int j = 0; j < partita.getDifficolta(); j++) {
-                System.out.print(String.format("%3d", eq.getEquilibrio(i, j)));
-            }
-            System.out.println();
-        }
-
-        System.out.println(partita.checkifPartitaContinua());
 
     }
 

@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Giocatore {
 
     private int tamagolem_in_campo;
-    private ArrayList<TamaGolem> tamaGolems;
+    private ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
     private String nome;
 
     public Giocatore(ArrayList<TamaGolem> tamaGolems, String nome) {
-        this.tamaGolems = tamaGolems;
+        this.tamaGolems.addAll(tamaGolems);
         this.nome = nome;
     }
 
@@ -17,9 +16,9 @@ public class Giocatore {
      **/
     public boolean isAvailableTamaGolem() {
         for (int i = tamaGolems.size()-1; i >= 0; i--) {
-            if(!tamaGolems.get(i).isAlive()){
-                tamaGolems.remove(i);
-            }else return true;
+            if(tamaGolems.get(i).isAlive()){
+                return true;
+            }
         }
         return false;
     }

@@ -26,13 +26,13 @@ public class Partita {
         generaScorta();
     }
 
-    public void generaScorta() {
+    private void generaScorta() {
         for (int i = 0; i < this.difficolta; i++) {
             this.scorta_pietre.add(TamaConstants.PIETRE_PER_ELEMENTO);
         }
     }
 
-    public void generaEquilibrio() {
+    private void generaEquilibrio() {
         this.equilibrio = new Equilibrio(this.difficolta);
     }
 
@@ -46,11 +46,15 @@ public class Partita {
      * @param pietre arraylist contenente le pietre da dare al tamagolem
      * @return true se l'evocazione va a buon fine, false altrimenti
      */
-    public boolean evocazione(Giocatore g, ArrayList<Integer> pietre){
-        if(g.isAvailableTamaGolem()) {
-            g.getTamaGolems().get(g.getTamaGolems().size() - 1).setPietre(pietre);
-            g.setTamagolemInCampo(g.getTamaGolems().size() - 1);
-            return true;
+    public boolean evocazione(Giocatore g, ArrayList<Integer> pietre) {
+        if (g.isAvailableTamaGolem()) {
+            for (int i = 0; i < g.getTamaGolems().size(); i++) {
+                if (g.getTamaGolems().get(i).isAlive()) {
+                    g.getTamaGolems().get(i).setPietre(pietre);
+                    g.setTamagolemInCampo(i);
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -63,11 +67,9 @@ public class Partita {
         int p1 = g1.getTamagolemInCampo().throwPietre();
         int p2 = g2.getTamagolemInCampo().throwPietre();
 
-        if(this.equilibrio.getEquilibrio(p1, p2) != 0){
-            g2.getTamagolemInCampo().setHp(this.equilibrio.getEquilibrio(p1, p2));
-        }else{
-            g1.getTamagolemInCampo().setHp(this.equilibrio.getEquilibrio(p2, p1));
-        }
+        g2.getTamagolemInCampo().setHp(this.equilibrio.getEquilibrio(p1, p2));
+        g1.getTamagolemInCampo().setHp(this.equilibrio.getEquilibrio(p2, p1));
+
         return g1.getTamagolemInCampo().isAlive() && g2.getTamagolemInCampo().isAlive();
     }
 
@@ -90,6 +92,10 @@ public class Partita {
 
     public int getDifficolta(){
         return this.difficolta;
+    }
+
+    public ArrayList<Integer> getScorta(){
+        return this.scorta_pietre;
     }
 
     //TODO fare in modo che per scegliere le pietre si attinga dalla scorta
