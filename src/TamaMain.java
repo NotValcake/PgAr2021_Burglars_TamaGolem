@@ -2,7 +2,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TamaMain {
-    //TODO creare classe di interazione per l'utente, altrimenti è impossibile verificare che funzioni correttamente
     public static void main(String[] args) {
         UserInterface.startMatch();
 
@@ -30,9 +29,9 @@ public class TamaMain {
         Partita p = new Partita(g1, g2, TamaConstants.BEGINNER_L);
 
         ArrayList<Integer> pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
-        ArrayList<Integer> pietre_2 = UserInterface.getPietre(p.getScorta(), g2);
-
         p.evocazione(g1, pietre_1);
+
+        ArrayList<Integer> pietre_2 = UserInterface.getPietre(p.getScorta(), g2);
         p.evocazione(g2, pietre_2);
 
         int turno = 1;

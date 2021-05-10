@@ -1,4 +1,4 @@
-public enum Elements {FUCO,
+public enum Elements {FUOCO,
             ACQUA,
             ARIA,
             TERRA,
