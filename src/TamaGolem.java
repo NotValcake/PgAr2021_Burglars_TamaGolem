@@ -3,9 +3,9 @@ import java.util.*;
 public class TamaGolem {
 
     private String name;
-    private final int max_pietre = TamaConstants.P;
+    private final int max_pietre = TamaValues.P;
     private Queue<Integer> pietre = new ArrayDeque<>();
-    private int hp = TamaConstants.V;
+    private int hp = TamaValues.V;
     private boolean alive = true;
 
     /**

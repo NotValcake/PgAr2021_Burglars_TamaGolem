@@ -1,7 +1,6 @@
-import java.util.HashMap;
 import java.util.Map;
 
-public class TamaConstants {
+public class TamaValues {
 
 
     /** N = num elementi
@@ -14,13 +13,34 @@ public class TamaConstants {
     public static int BEGINNER_L = 5 ;
     public static int INTERMEDIATE_L = 7 ;
     public static int DIFFICULT_L = 10 ;
+    public static int N;
+    public static int P;
+    public static int G;
+    public static int S ;
+    public static int PIETRE_PER_ELEMENTO;
+    public static int V = 10;
 
-    public static int N = 5;
-    public static int P = (int) Math.ceil((double) (N+1)/3 + 1);
+    public static void setN(int scelta){  //errore
+        if (scelta == 0)
+            N = BEGINNER_L;
+        else if (scelta == 1)
+            N = INTERMEDIATE_L;
+        else if (scelta == 2)
+            N = DIFFICULT_L;
+
+        P = (int) Math.ceil((double) (N+1)/3 + 1);
+        G = (int) Math.ceil((double) (N-1)*(N-2)/(2*P));
+        S = (int) Math.ceil((double) (2*G*P)/N) * N;
+        PIETRE_PER_ELEMENTO = (int) Math.ceil((double) (2*G*P)/N);
+    }
+
+
+
+   /* public static int P = (int) Math.ceil((double) (N+1)/3 + 1);
     public static int G = (int) Math.ceil((double) (N-1)*(N-2)/(2*P));
     public static int S = (int) Math.ceil((double) (2*G*P)/N) * N;
     public static int PIETRE_PER_ELEMENTO = (int) Math.ceil((double) (2*G*P)/N);
-    public static int V = 10;
+    public static int V = 10;*/
 
     public static final Map<Integer, String> ELEMENTI = Map.ofEntries( Map.entry(0, "Fuoco"),
             Map.entry(1, "Acqua"),
@@ -33,5 +53,15 @@ public class TamaConstants {
             Map.entry(8, "Buio"),
             Map.entry(9, "Vino")
     );
+
+ /*todo calcellami alla fine
+     public static void main(String[] args) {
+        setN(2);
+        System.out.println(N);
+      System.out.println(P);
+      System.out.println(G);
+      System.out.println(PIETRE_PER_ELEMENTO);
+    }*/
+
 
 }

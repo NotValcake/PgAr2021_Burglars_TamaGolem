@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Equilibrio {
 
-    private final int MAX = TamaConstants.V;
+    private final int MAX = TamaValues.V;
     private final int MIN = 1;
 
     private Graph equilibrio;

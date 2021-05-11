@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class Partita {
 
@@ -12,9 +10,6 @@ public class Partita {
     private Equilibrio equilibrio;
 
     private ArrayList<Integer> scorta_pietre = new ArrayList<>();
-   /* private HashMap<String, String> scortaElementi = new HashMap<>();
-  public void setScortaElementi(){
-  }*/
 
     private Giocatore vincitore;
 
@@ -34,22 +29,14 @@ public class Partita {
     /**difficolta = num livello (matrice)*/
     private void generaScorta() {
         for (int i = 0; i < this.difficolta; i++) {
-            this.scorta_pietre.add(TamaConstants.PIETRE_PER_ELEMENTO);
+            this.scorta_pietre.add(TamaValues.PIETRE_PER_ELEMENTO);//FIXMEnumero negativo
         }
     }
 
-    /**Sottraggo dalla scorta_pietre le pietre usate
-     * */
-   public void aggiornaScortaP(ArrayList pietreScelte){
-        for (int i=0; i< this.scorta_pietre.size(); i++)
-            if (pietreScelte.contains(i))
-                this.scorta_pietre.set(i, (this.scorta_pietre.get(i)- TamaConstants.PIETRE_PER_ELEMENTO));
-    }
 
     public ArrayList<Integer> getScorta(){
         return this.scorta_pietre;
     }
-    //TODO fare in modo che per scegliere le pietre si attinga dalla scorta
 
 
 
