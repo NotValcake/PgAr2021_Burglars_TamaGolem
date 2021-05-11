@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-//import it.unibs.fp.mylib.* ;
+import it.unibs.fp.mylib.* ;
+
 public class UserInterface {
 
     public static void startMatch(){
@@ -11,9 +12,9 @@ public class UserInterface {
     /**per selezionare livello da parte di utente */
     public static int sceglidifficolta(){
         System.out.printf("Scegliere il livello di difficoltà tra i tre disponibili(0, 1, 2):" +
-                " %n- 0)livello facile (%d elementi disponibili)" +
+                "%n- 0)livello facile (%d elementi disponibili)" +
                 "%n- 1)livello intermedio (%d elementi disponibili)" +
-                " %n- 2)livello PRO (%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
+                "%n- 2)livello PRO (%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
         int scelta = controllaScelta(3);
         return scelta;
     }
@@ -75,12 +76,6 @@ public class UserInterface {
         }
         return scelta;
     }
-
-
-
-
-
-
 
     public static void annuncioTurno(int turno){
         System.out.printf("Ha inizio il %d turno%n", turno);

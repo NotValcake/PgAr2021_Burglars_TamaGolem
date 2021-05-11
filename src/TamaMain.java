@@ -37,6 +37,7 @@ public class TamaMain {
 
         ArrayList<Integer> pietre_1;
         ArrayList<Integer> pietre_2;
+
         if (p.testaOCroce() == 0){
             pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
             p.evocazione(g1, pietre_1);
@@ -92,7 +93,6 @@ public class TamaMain {
 
         /*if ( UserInterface.nuovaPartita() == 1 ) //fixme come faccio ripartire main?
             main();*/
-
     }
 
 

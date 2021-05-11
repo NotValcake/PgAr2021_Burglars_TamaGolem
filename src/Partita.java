@@ -29,7 +29,7 @@ public class Partita {
     /**difficolta = num livello (matrice)*/
     private void generaScorta() {
         for (int i = 0; i < this.difficolta; i++) {
-            this.scorta_pietre.add(TamaValues.PIETRE_PER_ELEMENTO);//FIXMEnumero negativo
+            this.scorta_pietre.add(TamaValues.PIETRE_PER_ELEMENTO);
         }
     }
 
