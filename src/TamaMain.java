@@ -82,13 +82,17 @@ public class TamaMain {
             }
         }
 
-        UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
-
         if(p.checkifPartitaContinua() == -1){
             UserInterface.partitaFinita(g2, g1);
         }else{
             UserInterface.partitaFinita(g1, g2);
         }
+
+        UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
+
+
+        /*if ( UserInterface.nuovaPartita() == 1 )
+            main();*/
 
     }
 

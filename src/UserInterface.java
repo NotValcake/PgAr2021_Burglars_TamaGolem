@@ -116,4 +116,10 @@ public class UserInterface {
         }
     }
 
+    public static int nuovaPartita(){
+        System.out.println("Premi 1 per fare un'altra partita\n 0 per uscire!");
+        int scelta = controllaScelta(2);
+        return scelta;
+    }
+
 }
