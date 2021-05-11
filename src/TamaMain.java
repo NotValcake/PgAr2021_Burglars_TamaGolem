@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 /*TODO eliminiamo tipi enum? ce hashmap
 * TODO richiesta info e new di un giocatore tutto in un metodo cosi lo richiamo due volte
-* FIXME error in flusso gioco dopo primo turno, al momento di selezionare secondo tamagolem
-*
+* FIXME main troppo lungo, what to do? nuova classe\metodo per gestire flusso gioco?
 * */
 public class TamaMain {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class TamaMain {
         ArrayList<TamaGolem> t2 = new ArrayList<>();
 
         int level = UserInterface.sceglidifficolta(); //per selezionare livello da utente
-        TamaValues.setN(level);//per fissare livello selezionato per partita
+        TamaValues.setValues(level);//per fissare livello selezionato per partita
 
         while(t1.size() < TamaValues.G){
             String tama_name = UserInterface.getTamaName(g1_name);
@@ -91,7 +90,7 @@ public class TamaMain {
         UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
 
 
-        /*if ( UserInterface.nuovaPartita() == 1 )
+        /*if ( UserInterface.nuovaPartita() == 1 ) //fixme come faccio ripartire main?
             main();*/
 
     }

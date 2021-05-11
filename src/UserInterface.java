@@ -116,6 +116,7 @@ public class UserInterface {
         }
     }
 
+    /** Scelta utente per cominciare una nuova partita*/
     public static int nuovaPartita(){
         System.out.println("Premi 1 per fare un'altra partita\n 0 per uscire!");
         int scelta = controllaScelta(2);

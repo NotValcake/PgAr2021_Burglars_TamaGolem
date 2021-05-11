@@ -20,7 +20,8 @@ public class TamaValues {
     public static int PIETRE_PER_ELEMENTO;
     public static int V = 10;
 
-    public static void setN(int scelta){  //errore
+
+    public static void setValues(int scelta){  //errore
         if (scelta == 0)
             N = BEGINNER_L;
         else if (scelta == 1)
