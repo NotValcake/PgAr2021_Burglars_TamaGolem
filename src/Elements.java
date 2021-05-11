@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-public enum Elements {
-            FUCO,
+public enum Elements {FUOCO,
             ACQUA,
             ARIA,
             TERRA,
@@ -10,9 +7,5 @@ public enum Elements {
             VELENO,
             ACCIAIO,
             BUIO,
-            VINO;
-
-     Map<Integer, Elements> elementsMap = new HashMap<Integer, Elements>();
-
-
+            VINO
 }

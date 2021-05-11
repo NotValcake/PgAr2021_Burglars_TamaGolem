@@ -26,29 +26,27 @@ public class UserInterface {
         return name.strip();
     }
 
-
-    //da finire di sistemare
-    //  TODO add scorta per elemento avrà <= 0 pietre se finita,
-    //   in userinterface while( valorescortaPietre <= 0 allora stampa successiva)
-    //fixme aggiungere do while con controllo se utente seleziona tra 1 e scorta.size()
     public static ArrayList<Integer> getPietre(ArrayList<Integer> scorta, Giocatore g){
+        ArrayList <Integer> temp = new ArrayList<>();
+        temp.addAll(scorta);//inefficiente si, ma permette di mantenere separata UI da logica del programma
         Scanner in = scannerInit();
         System.out.printf("%s seleziona tre pietre da dare al tuo tamagolem tra quelle disponibili nella scorta: %n", g.getNome());
         for (int i = 0; i < scorta.size(); i++) {
-            System.out.printf("%2d) : %d%n", i, scorta.get(i));//TODO aggiungere numero) stampa elemento: numero disponibili;
+            System.out.printf("%2d) %s: %d%n", i, TamaConstants.ELEMENTI.get(i),scorta.get(i));
         }
 
         ArrayList<Integer> scelte = new ArrayList<>();
 
         while(scelte.size() < TamaConstants.P){
-            int sceltaX= 0;
-
-            while (scorta.get(sceltaX) <= 0 ) { //errore
-                sceltaX = in.nextInt();
-                System.out.println("Pietre non disponibili, scegliere un altro set");
+            int scelta = in.nextInt();
+            while(temp.get(scelta) <= 0) {
+                System.out.println("Non ci sono pietre disponibili dell'elemento scelto! Scegli altre pietre...");
+                scelta = in.nextInt();
             }
-            scelte.add(sceltaX); //TODO aggiungere controllo pietre valide, fatto, fare prove
+            scelte.add(scelta);
+            temp.set(scelta, temp.get(scelta)-1);
         }
+
         return scelte;
     }
 
@@ -71,9 +69,16 @@ public class UserInterface {
     }
 
     public static void rivelaEquilibrio(Equilibrio e){
+        System.out.println("L'equilibrio del mondo è...");
+        System.out.printf("%8s", "");
         for (int i = 0; i < e.getSize(); i++) {
+            System.out.printf("%8s", TamaConstants.ELEMENTI.get(i));
+        }
+        System.out.println();
+        for (int i = 0; i < e.getSize(); i++) {
+            System.out.printf("%8s", TamaConstants.ELEMENTI.get(i));
             for (int j = 0; j < e.getSize(); j++) {
-                System.out.printf("%3d", e.getEquilibrio(i, j));
+                System.out.printf("%8d", e.getEquilibrio(i, j));
             }
             System.out.println();
         }

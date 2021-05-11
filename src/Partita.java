@@ -73,6 +73,9 @@ public class Partita {
                 if (g.getTamaGolems().get(i).isAlive()) {
                     g.getTamaGolems().get(i).setPietre(pietre);
                     g.setTamagolemInCampo(i);
+                    for (int j = 0; j < pietre.size(); j++) {
+                        scorta_pietre.set(pietre.get(j), scorta_pietre.get(pietre.get(j))-1);
+                    }
                     return true;
                 }
             }
