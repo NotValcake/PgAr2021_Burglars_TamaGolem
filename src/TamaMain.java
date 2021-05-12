@@ -70,7 +70,7 @@ public class TamaMain {
             if(!g1.getTamagolemInCampo().isAlive() && g1.isAvailableTamaGolem()){
                 UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
                 pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
-                if(p.evocazione(g1, pietre_1)){
+                if(!p.evocazione(g1, pietre_1)){
                     break;
                 }
             }else if(!g2.getTamagolemInCampo().isAlive() && g2.isAvailableTamaGolem()){
