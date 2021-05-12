@@ -1,41 +1,28 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 import it.unibs.fp.mylib.* ;
-
 public class UserInterface {
 
+    //todo quale sarebbe in inputdati leggi int con max e min?
     public static void startMatch(){
         System.out.println("Benvenuti, allievi! Siete pronti per cominciare un nuovo scontro? \nInserite i vostri nomi.\n");
     }
 
-
-    /**per selezionare livello da parte di utente */
     public static int sceglidifficolta(){
         System.out.printf("Scegliere il livello di difficoltà tra i tre disponibili(0, 1, 2):" +
-                "%n- 0)livello facile (%d elementi disponibili)" +
-                "%n- 1)livello intermedio (%d elementi disponibili)" +
-                "%n- 2)livello PRO (%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
+                " %n -0)livello facile(%d elementi disponibili)" +
+                "%n- 1)livello intermedio(%d elementi disponibili)" +
+                " %n- 2)livello PRO(%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
         int scelta = controllaScelta(3);
         return scelta;
     }
 
-
-
-    public static Scanner scannerInit(){
-        return new Scanner(System.in);
-    }
-
     public static  String getPlayerName(int p){
-        Scanner in = scannerInit();
-        System.out.printf("Inserisci il nome del giocatore %d: ", p);
-        String name = in.nextLine();
+        String name = InputDati.leggiStringaNonVuota("Inserisci il nome del giocatore" + p + ": ");
         return name.strip();
     }
 
     public static  String getTamaName(String g){
-        Scanner in = scannerInit();
-        System.out.printf("%s inserisci il nome dei tuoi tamagolems: ", g);
-        String name = in.nextLine();
+        String name = InputDati.leggiStringaNonVuota(g +" Inserisci il nome del tamagolem : ");
         return name.strip();
     }
 
@@ -43,7 +30,7 @@ public class UserInterface {
         ArrayList <Integer> temp = new ArrayList<>();
         temp.addAll(scorta);//inefficiente si, ma permette di mantenere separata UI da logica del programma
 
-        System.out.printf("%s seleziona tre pietre da dare al tuo tamagolem tra quelle disponibili nella scorta:%n  (Seleziona il numero di indice!) %n", g.getNome());
+        System.out.printf("%s seleziona tre pietre da dare al tuo tamagolem tra quelle disponibili nella scorta:%n  (Seleziona il numero indice!) %n", g.getNome());
         for (int i = 0; i < scorta.size(); i++) {
             System.out.printf("%2d) %s: %d%n", i, TamaValues.ELEMENTI.get(i),scorta.get(i));
         }
@@ -63,19 +50,23 @@ public class UserInterface {
         return scelte;
     }
 
-    /**chiede in input scelta utente di pietra per elemento,
+    /**chiede in input scelta utente tra gli indici disponibili
      * e controlla se la scelta è valida in base alle opzioni disponibili
      * @return scelta dell'utente valida
      * */
     private static int controllaScelta(int maxNotInclusve){
-        Scanner in = scannerInit();
-        int scelta = in.nextInt();
+        int scelta = InputDati.leggiInteroNonNegativo("Inserire indice pietra: ");
         while(scelta < 0 || scelta >= maxNotInclusve) {
-            System.out.println("Scegliere un valore valido in base gli indici!");
-            scelta = in.nextInt();
+            scelta = InputDati.leggiInteroNonNegativo("Scegliere un valore valido!\n");
         }
         return scelta;
     }
+
+
+
+
+
+
 
     public static void annuncioTurno(int turno){
         System.out.printf("Ha inizio il %d turno%n", turno);
@@ -111,11 +102,5 @@ public class UserInterface {
         }
     }
 
-    /** Scelta utente per cominciare una nuova partita*/
-    public static int nuovaPartita(){
-        System.out.println("Premi 1 per fare un'altra partita\n 0 per uscire!");
-        int scelta = controllaScelta(2);
-        return scelta;
-    }
-
 }
+
