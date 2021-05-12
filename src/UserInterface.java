@@ -10,15 +10,15 @@ public class UserInterface {
 
     public static int sceglidifficolta(){
         System.out.printf("Scegliere il livello di difficoltà tra i tre disponibili(0, 1, 2):" +
-                " %n -0)livello facile(%d elementi disponibili)" +
-                "%n- 1)livello intermedio(%d elementi disponibili)" +
-                " %n- 2)livello PRO(%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
+                "%n- 0) livello facile(%d elementi disponibili)" +
+                "%n- 1) livello intermedio(%d elementi disponibili)" +
+                "%n- 2) livello PRO(%d elementi disponibili)%n", TamaValues.BEGINNER_L , TamaValues.INTERMEDIATE_L , TamaValues.DIFFICULT_L);
         int scelta = controllaScelta(3);
         return scelta;
     }
 
     public static  String getPlayerName(int p){
-        String name = InputDati.leggiStringaNonVuota("Inserisci il nome del giocatore" + p + ": ");
+        String name = InputDati.leggiStringaNonVuota("Inserisci il nome del Giocatore " + p + ": ");
         return name.strip();
     }
 
@@ -79,11 +79,11 @@ public class UserInterface {
     }
 
     public static void partitaFinita(Giocatore vincitore, Giocatore sconfitto){
-        System.out.printf("Sembra che %s non abbia più tamagolem! %s vince lo scontro!", sconfitto.getNome(), vincitore.getNome());
+        System.out.printf("%nSembra che %s non abbia più tamagolem! %s vince lo scontro!", sconfitto.getNome(), vincitore.getNome());
     }
 
     public static void rivelaEquilibrio(Equilibrio e){
-        System.out.println("L'equilibrio del mondo è...");
+        System.out.println("%nL'equilibrio del mondo è...%n");
         System.out.printf("%8s", "");
         for (int i = 0; i < e.getSize(); i++) {
             System.out.printf("%8s", TamaValues.ELEMENTI.get(i));
@@ -101,8 +101,7 @@ public class UserInterface {
     /** Scelta utente per cominciare una nuova partita*/
     public static int nuovaPartita(){
         System.out.println("Premi 1 per fare un'altra partita oppure 0 per uscire!");
-        int scelta = controllaScelta(2);
-        return scelta;
+        return controllaScelta(2);
     }
 
 
