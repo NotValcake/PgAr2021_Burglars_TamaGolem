@@ -3,7 +3,7 @@ import it.unibs.fp.mylib.* ;
 
 public class UserInterface {
 
-    //todo quale sarebbe in inputdati leggi int con max e min? RISPOSTA: "public static int leggiIntero(String messaggio, int minimo, int massimo)"
+    //todo quale sarebbe in inputdati leggi int con max e min? RISPOSTA: "public static int leggiIntero(String messaggio, int minimo, int massimo)", GRAzie
     public static void startMatch(){
         System.out.println("Benvenuti, allievi! Siete pronti per cominciare un nuovo scontro? \nInserite i vostri nomi.\n");
     }
@@ -56,7 +56,7 @@ public class UserInterface {
      * @return scelta dell'utente valida
      * */
     private static int controllaScelta(int maxNotInclusve){
-        int scelta = InputDati.leggiInteroNonNegativo("Inserire indice pietra: ");
+        int scelta = InputDati.leggiInteroNonNegativo("Inserire l'indice: ");
         while(scelta < 0 || scelta >= maxNotInclusve) {
             scelta = InputDati.leggiInteroNonNegativo("Scegliere un valore valido!\n");
         }
@@ -83,7 +83,7 @@ public class UserInterface {
     }
 
     public static void rivelaEquilibrio(Equilibrio e){
-        System.out.println("%nL'equilibrio del mondo è...%n");
+        System.out.printf("%nL'equilibrio del mondo è...%n");
         System.out.printf("%8s", "");
         for (int i = 0; i < e.getSize(); i++) {
             System.out.printf("%8s", TamaValues.ELEMENTI.get(i));
