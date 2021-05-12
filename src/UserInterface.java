@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import it.unibs.fp.mylib.* ;
+
 public class UserInterface {
 
-    //todo quale sarebbe in inputdati leggi int con max e min?
+    //todo quale sarebbe in inputdati leggi int con max e min? RISPOSTA: "public static int leggiIntero(String messaggio, int minimo, int massimo)"
     public static void startMatch(){
         System.out.println("Benvenuti, allievi! Siete pronti per cominciare un nuovo scontro? \nInserite i vostri nomi.\n");
     }
@@ -99,7 +100,7 @@ public class UserInterface {
 
     /** Scelta utente per cominciare una nuova partita*/
     public static int nuovaPartita(){
-        System.out.println("Premi 1 per fare un'altra partita\n 0 per uscire!");
+        System.out.println("Premi 1 per fare un'altra partita oppure 0 per uscire!");
         int scelta = controllaScelta(2);
         return scelta;
     }
