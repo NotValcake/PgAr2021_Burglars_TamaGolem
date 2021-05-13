@@ -1,6 +1,6 @@
 public class EquilibrioTest {
 
-    private static final int ELEMENTS_NUM = 4;
+    private static final int ELEMENTS_NUM = 20;
 
     public static void main(String[] args) {
         Equilibrio eq = new Equilibrio(ELEMENTS_NUM);

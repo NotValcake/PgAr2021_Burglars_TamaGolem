@@ -23,20 +23,24 @@ public class Equilibrio {
 
         for (int i = 1; i < equilibrio.getVertexNum() - 1; i++) {
             for (int j = 0; j < i; j++) {
-               inserisciCoppia(i,j);
+                inserisciCoppia(i, j);
             }
         }
 
         for (int k = 0; k < sommeR.length - 1; k++) {
-            do{
-                if (sommeR[k] == sommeC[k])
-                    inserisciCoppia(k , equilibrio.getVertexNum() - 2);
-                for (int l = 0; l < sommeR.length - 1; l++) {
-                  sommeR[k] += equilibrio.getVertex(l).get(k);
-                  sommeC[k] += equilibrio.getVertex(k).get(l);
-                }
-            }while  (sommeR[k] == sommeC[k]);
-
+            //faccio la somma di ogni riga e colonna
+            for (int l = 0; l < sommeR.length - 1; l++) {
+                sommeR[k] += equilibrio.getVertex(l).get(k);
+                sommeC[k] += equilibrio.getVertex(k).get(l);
+            }
+            //ogni volta controllo che la somma di righe e colonne sia diversa
+            while (sommeC[k] == sommeR[k]) {
+                //se somme di righe e colonne sono uguali prima di sostituire i valori li rimuovo dalle somme
+                sommeR[k] -= equilibrio.getVertex(equilibrio.getVertexNum() - 2).get(k);
+                sommeC[k] -= equilibrio.getVertex(k).get(equilibrio.getVertexNum() - 2);
+                //quindi sostituisco i valori
+                inserisciCoppia(k, equilibrio.getVertexNum() - 2);
+            }
         }
 
         for (int j = 0; j < equilibrio.getVertexNum() - 1; j++) {
@@ -46,20 +50,16 @@ public class Equilibrio {
         }
     }
 
-    private void inserisciCoppia(int i, int j){
+
+    private void inserisciCoppia(int i, int j) {
         if (randomRangeMaxMin(MAX, MIN) % 2 == 0) {
-                equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
-                equilibrio.getVertex(j).set(i, 0);
-            }
-        else {
-                equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
-                equilibrio.getVertex(i).set(j, 0);
+            equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
+            equilibrio.getVertex(j).set(i, 0);
+        } else {
+            equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
+            equilibrio.getVertex(i).set(j, 0);
         }
     }
-
-
-
-
 
 
     public static int randomRangeMaxMin(int max, int min) {
