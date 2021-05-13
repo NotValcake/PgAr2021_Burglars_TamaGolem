@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class provaEquilibrio {
-    private final static int NUM_ELEMENTS = 4;
+    private final static int NUM_ELEMENTS =7;
     private final static int MAX = 10;
     private final static int MIN = 1;
 

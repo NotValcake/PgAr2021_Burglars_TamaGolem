@@ -27,16 +27,17 @@ public class Equilibrio {
                     do {
                         equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
                         equilibrio.getVertex(j).set(i, 0);
-                    }while (prev ==  equilibrio.getVertex(i).get(j));
+                    } while (prev == equilibrio.getVertex(i).get(j));
                     prev = equilibrio.getVertex(i).get(j);
                 } else {
                     do {
                         equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
                         equilibrio.getVertex(i).set(j, 0);
-                    }while (prev ==  equilibrio.getVertex(j).get(i));
+                    } while (prev == equilibrio.getVertex(j).get(i));
                     prev = equilibrio.getVertex(j).get(i);
                 }
             }
+        }
 
             for (int k = 0; k < sommeR.length; k++) {
                 for (int l = 0; l < sommeR.length; l++) {
@@ -45,7 +46,7 @@ public class Equilibrio {
                 }
             }
 
-            for (int j = 0; j < equilibrio.getVertexNum() -1; j++)
+            for (int j = 0; j < equilibrio.getVertexNum() -1; j++){
                 if ( sommeR[j] > sommeC[j])
                    equilibrio.getVertex(j).set(equilibrio.getVertexNum()-1, sommeR[j] - sommeC[j]);
                 else equilibrio.getVertex(equilibrio.getVertexNum()-1).set(j, sommeC[j] - sommeR[j]);
