@@ -40,6 +40,10 @@ public class Equilibrio {
                 sommeC[k] -= equilibrio.getVertex(k).get(equilibrio.getVertexNum() - 2);
                 //quindi sostituisco i valori
                 inserisciCoppia(k, equilibrio.getVertexNum() - 2);
+
+                //riaggiorno le somme di righe e oclonne
+                sommeR[k] += equilibrio.getVertex(equilibrio.getVertexNum() - 2).get(k);
+                sommeC[k] += equilibrio.getVertex(k).get(equilibrio.getVertexNum() - 2);
             }
         }
 
