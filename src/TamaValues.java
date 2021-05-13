@@ -18,16 +18,22 @@ public class TamaValues {
     public static int G;
     public static int S ;
     public static int PIETRE_PER_ELEMENTO;
-    public static int V = 10;
+    public static int V;
 
 
-    public static void setValues(int scelta){  //errore
-        if (scelta == 0)
+    public static void setValues(int scelta){
+        if (scelta == 0){
             N = BEGINNER_L;
-        else if (scelta == 1)
+            V = 25;
+        }
+        else if (scelta == 1){
             N = INTERMEDIATE_L;
-        else if (scelta == 2)
+            V = 50;
+        }
+        else if (scelta == 2) {
             N = DIFFICULT_L;
+            V = 100;
+        }
 
         P = (int) Math.ceil((double) (N+1)/3 + 1);
         G = (int) Math.ceil((double) (N-1)*(N-2)/(2*P));

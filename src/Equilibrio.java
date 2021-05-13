@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Equilibrio {
 
-    private final int MAX = TamaValues.V;
+    private final int MAX = (TamaValues.V/TamaValues.N);
     private final int MIN = 1;
 
     private Graph equilibrio;
@@ -12,7 +12,7 @@ public class Equilibrio {
         this.equilibrio = new Graph(elements_num);
         setEquilibrio();
     }
-    //TODO modificare algoritmo in modo che sia rispettata la condizione sup(W)<= V
+    //TODO modificare algoritmo in modo che sia rispettata la condizione sup(W)<= V, fatto
 
     /**
      * crea valori in array random
@@ -40,8 +40,7 @@ public class Equilibrio {
                 sommeC[k] -= equilibrio.getVertex(k).get(equilibrio.getVertexNum() - 2);
                 //quindi sostituisco i valori
                 inserisciCoppia(k, equilibrio.getVertexNum() - 2);
-
-                //riaggiorno le somme di righe e oclonne
+                //riaggiorno le somme di righe e colonne
                 sommeR[k] += equilibrio.getVertex(equilibrio.getVertexNum() - 2).get(k);
                 sommeC[k] += equilibrio.getVertex(k).get(equilibrio.getVertexNum() - 2);
             }
