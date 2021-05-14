@@ -162,8 +162,10 @@ public class Partita {
         }
         if (checkifPartitaContinua() == -1) {
             UserInterface.partitaFinita(g2, g1);
+            g2.setScore();
         } else {
             UserInterface.partitaFinita(g1, g2);
+            g1.setScore();
         }
     }
 

@@ -5,10 +5,20 @@ public class Giocatore {
     private int tamagolem_in_campo;
     private ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
     private String nome;
+    private int score;
 
     public Giocatore(ArrayList<TamaGolem> tamaGolems, String nome) {
         this.tamaGolems.addAll(tamaGolems);
+        this.score = 0;
         this.nome = nome;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore() {
+        this.score++;
     }
 
     /**rimuove dall'ArrayList i TamaGolems eliminati

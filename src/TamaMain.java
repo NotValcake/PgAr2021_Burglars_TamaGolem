@@ -33,8 +33,10 @@ public class TamaMain {
 
             UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
 
+            UserInterface.printScore(g1, g2);
+
         } while (UserInterface.nuovaPartita() == 1);
 
-        System.out.println("100 punti? :) su 100");
+        System.out.println("Il Team Burglars parte alla velocita della luceeee!");
     }
 }

@@ -117,5 +117,8 @@ public class UserInterface {
         InputDati.leggiStringa("\nPremi invio per proseguire lo scontro!");
     }
 
+    public static void printScore(Giocatore g1, Giocatore g2) {
+        System.out.printf("%nPunteggi:%n%s: %d%n%s: %d", g1.getNome(), g1.getScore(), g2.getNome(), g2.getScore());
+    }
 }
 
