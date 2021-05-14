@@ -14,7 +14,7 @@ public class Equilibrio {
     }
 
     /**
-     * crea valori in array random
+     * genera valori random
      **/
     private void setEquilibrio() {
         int[] sommeR = new int[equilibrio.getVertexNum()];

@@ -71,6 +71,10 @@ public class TamaGolem {
         return this.alive;
     }
 
+    /**
+     * metodo per controllare le pietre di un tamagolem
+     * @return le pietre assegnate al tamagolem sotto forma di ArrayList
+     */
     public ArrayList<Integer> getPietre() {
         ArrayList<Integer> pietre = new ArrayList<Integer>();
         pietre.addAll(this.pietre);

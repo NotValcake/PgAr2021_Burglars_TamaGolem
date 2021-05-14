@@ -11,11 +11,6 @@ public class Partita {
 
     private ArrayList<Integer> scorta_pietre = new ArrayList<>();
 
-    private Giocatore vincitore;
-
-    private ArrayList<String> ElementiG1 = new ArrayList<>();
-    private ArrayList<String> ElementiG2 = new ArrayList<>();
-
     public Partita(Giocatore g1, Giocatore g2, int difficolta) {
 
         this.g1 = g1;
@@ -110,10 +105,14 @@ public class Partita {
 
     }
 
+    /**
+     * gestisce il flusso di gioco di una singola partita
+     */
     public void faiPartita() {
         ArrayList<Integer> pietre_1;
         ArrayList<Integer> pietre_2;
 
+        //simula il lancio di una moneta per decidere chi sceglie per primo
         if (testaOCroce() == 0) {
             pietre_1 = UserInterface.getPietre(getScorta(), g1);
             evocazione(g1, pietre_1);
@@ -169,6 +168,12 @@ public class Partita {
         }
     }
 
+    /**
+     * Controlla che un giocatore non assegni al proprio tamagolem le stesse pietre dell'avversario, nello stesso ordine
+     * @param g1 giocatore che deve effettuare l'evocazione
+     * @param g2 altro giocatore
+     * @return true se l'evocazione è possibile
+     */
     private boolean canSummon(Giocatore g1, Giocatore g2) {
         ArrayList<Integer> pietre_1;
         UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
