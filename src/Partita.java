@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Partita {
@@ -110,7 +111,7 @@ public class Partita {
 
     }
 
-    public void faiPartita() {
+    public void faiPartita() throws IOException {
         ArrayList<Integer> pietre_1;
         ArrayList<Integer> pietre_2;
 
@@ -169,7 +170,7 @@ public class Partita {
         }
     }
 
-    private boolean canSummon(Giocatore g1, Giocatore g2) {
+    private boolean canSummon(Giocatore g1, Giocatore g2) throws IOException {
         ArrayList<Integer> pietre_1;
         UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
         pietre_1 = UserInterface.getPietre(getScorta(), g1);

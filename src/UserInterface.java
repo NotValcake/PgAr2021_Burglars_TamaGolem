@@ -1,3 +1,6 @@
+import java.io.Console;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.*;
@@ -28,7 +31,7 @@ public class UserInterface {
         return name.strip();
     }
 
-    public static ArrayList<Integer> getPietre(ArrayList<Integer> scorta, Giocatore g) {
+    public static ArrayList<Integer> getPietre(ArrayList<Integer> scorta, Giocatore g) throws IOException {
         ArrayList<Integer> temp = new ArrayList<>();
         temp.addAll(scorta);//inefficiente si, ma permette di mantenere separata UI da logica del programma
 
@@ -39,10 +42,10 @@ public class UserInterface {
 
         ArrayList<Integer> scelte = new ArrayList<>();
         while (scelte.size() < TamaValues.P) {
-            int scelta = controllaScelta(TamaValues.N);
+            int scelta = controllaSceltaSegreta(TamaValues.N);
             while (temp.get(scelta) <= 0) {
                 System.out.println("Non ci sono pietre disponibili dell'elemento scelto! Scegli altre pietre...");
-                scelta = controllaScelta(TamaValues.N);
+                scelta = controllaSceltaSegreta(TamaValues.N);
             }
 
             scelte.add(scelta);
@@ -52,6 +55,44 @@ public class UserInterface {
         return scelte;
     }
 
+
+    /**
+     * chiede in input scelta utente tra gli indici disponibili
+     * e controlla se la scelta è valida in base alle opzioni disponibili
+     *
+     * @return scelta dell'utente valida
+     */
+    private static int controllaSceltaSegreta(int maxNotInclusve) throws IOException {
+        //Console in = System.console();
+        int scelta = Integer.parseInt(readPwd());
+        while (scelta < 0 || scelta >= maxNotInclusve) {
+            scelta = Integer.parseInt(readPwd());
+        }
+        return scelta;
+    }
+
+    private static String readPwd() throws IOException {
+        Console c=System.console();
+        if (c==null) { //IN ECLIPSE IDE
+            System.out.print("Password: ");
+            InputStream in=System.in;
+            int max=50;
+            byte[] b=new byte[max];
+
+            int l= in.read(b);
+            l--;//last character is \n
+            if (l>0) {
+                byte[] e=new byte[l];
+                System.arraycopy(b,0, e, 0, l);
+                return new String(e);
+            } else {
+                return null;
+            }
+        } else { //Outside Eclipse IDE
+            return new String(c.readPassword("Password: "));
+        }
+    }
+
     /**
      * chiede in input scelta utente tra gli indici disponibili
      * e controlla se la scelta è valida in base alle opzioni disponibili
@@ -59,6 +100,7 @@ public class UserInterface {
      * @return scelta dell'utente valida
      */
     private static int controllaScelta(int maxNotInclusve) {
+
         int scelta = InputDati.leggiInteroNonNegativo("Inserire l'indice: ");
         while (scelta < 0 || scelta >= maxNotInclusve) {
             scelta = InputDati.leggiInteroNonNegativo("Scegliere un valore valido!\n");

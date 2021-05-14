@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TamaMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         UserInterface.startMatch();
         String g1_name = UserInterface.getPlayerName(1);
         String g2_name = UserInterface.getPlayerName(2);
