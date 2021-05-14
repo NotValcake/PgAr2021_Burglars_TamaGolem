@@ -2,7 +2,6 @@ import java.util.Map;
 
 public class TamaValues {
 
-
     /** N = num elementi
      *  P = numero Pietre
      *  G= numero TamaGolem per partita
@@ -24,7 +23,8 @@ public class TamaValues {
     public static void setValues(int scelta){
         if (scelta == 0){
             N = BEGINNER_L;
-            V = 25;
+            V = 25;//FIXME possibile che ci sia qualche problema nella generazione di vita non fissa, ci sono in media 20 turni con V=25,   9/10 turni con vita = 10
+
         }
         else if (scelta == 1){
             N = INTERMEDIATE_L;
@@ -41,14 +41,6 @@ public class TamaValues {
         PIETRE_PER_ELEMENTO = (int) Math.ceil((double) (2*G*P)/N);
     }
 
-
-
-   /* public static int P = (int) Math.ceil((double) (N+1)/3 + 1);
-    public static int G = (int) Math.ceil((double) (N-1)*(N-2)/(2*P));
-    public static int S = (int) Math.ceil((double) (2*G*P)/N) * N;
-    public static int PIETRE_PER_ELEMENTO = (int) Math.ceil((double) (2*G*P)/N);
-    public static int V = 10;*/
-
     public static final Map<Integer, String> ELEMENTI = Map.ofEntries( Map.entry(0, "Fuoco"),
             Map.entry(1, "Acqua"),
             Map.entry(2, "Aria"),
@@ -61,14 +53,7 @@ public class TamaValues {
             Map.entry(9, "Vino")
     );
 
- /*todo calcellami alla fine
-     public static void main(String[] args) {
-        setN(2);
-        System.out.println(N);
-      System.out.println(P);
-      System.out.println(G);
-      System.out.println(PIETRE_PER_ELEMENTO);
-    }*/
+
 
 
 }

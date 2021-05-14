@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Equilibrio {
 
-    private final int MAX = (TamaValues.V/TamaValues.N);
+    private final int MAX = (TamaValues.V/TamaValues.N - 2);
     private final int MIN = 1;
 
     private Graph equilibrio;
@@ -12,7 +12,6 @@ public class Equilibrio {
         this.equilibrio = new Graph(elements_num);
         setEquilibrio();
     }
-    //TODO modificare algoritmo in modo che sia rispettata la condizione sup(W)<= V, fatto
 
     /**
      * crea valori in array random
@@ -78,22 +77,4 @@ public class Equilibrio {
         return equilibrio.getVertexNum();
     }
 
-
-
-
-    /*
-     if (randomRangeMaxMin(MAX, MIN) % 2 == 0) {
-                    do {
-                        equilibrio.getVertex(i).set(j, randomRangeMaxMin(MAX, MIN));
-                        equilibrio.getVertex(j).set(i, 0);
-                    } while (prev == equilibrio.getVertex(i).get(j));
-                    prev = equilibrio.getVertex(i).get(j);
-                } else {
-                    do {
-                        equilibrio.getVertex(j).set(i, randomRangeMaxMin(MAX, MIN));
-                        equilibrio.getVertex(i).set(j, 0);
-                    } while (prev == equilibrio.getVertex(j).get(i));
-                    prev = equilibrio.getVertex(j).get(i);
-                }
-                    */
 }

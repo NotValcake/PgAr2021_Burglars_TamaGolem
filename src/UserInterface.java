@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import it.unibs.fp.mylib.* ;
 
+
+
 public class UserInterface {
 
-    //todo quale sarebbe in inputdati leggi int con max e min? RISPOSTA: "public static int leggiIntero(String messaggio, int minimo, int massimo)", GRAzie
     public static void startMatch(){
         System.out.println("Benvenuti, allievi! Siete pronti per cominciare un nuovo scontro? \nInserite i vostri nomi.\n");
     }

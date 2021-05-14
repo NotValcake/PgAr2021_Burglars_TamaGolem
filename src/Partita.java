@@ -13,7 +13,7 @@ public class Partita {
 
     private Giocatore vincitore;
 
-    private ArrayList<String> ElementiG1 = new ArrayList<>();  //prendi arraylist di enum scelti
+    private ArrayList<String> ElementiG1 = new ArrayList<>();
     private ArrayList<String> ElementiG2 = new ArrayList<>();
 
     public Partita(Giocatore g1, Giocatore g2, int difficolta) {
@@ -37,7 +37,6 @@ public class Partita {
     public ArrayList<Integer> getScorta(){
         return this.scorta_pietre;
     }
-
 
 
     private void generaEquilibrio() {
@@ -103,6 +102,63 @@ public class Partita {
 
     public int getDifficolta(){
         return this.difficolta;
+    }
+
+ //fixme faiPartita() cancella metodo se vuoi metterlo in main
+     public void faiPartita(){
+        ArrayList<Integer> pietre_1;
+        ArrayList<Integer> pietre_2;
+
+        if (testaOCroce() == 0) {
+            pietre_1 = UserInterface.getPietre(getScorta(), g1);
+            evocazione(g1, pietre_1);
+            pietre_2 = UserInterface.getPietre(getScorta(), g2);
+            evocazione(g2, pietre_2);
+        } else {
+            pietre_2 = UserInterface.getPietre(getScorta(), g2);
+            evocazione(g2, pietre_2);
+            pietre_1 = UserInterface.getPietre(getScorta(), g1);
+            evocazione(g1, pietre_1);
+        }
+
+        int turno = 1;
+
+        while (checkifPartitaContinua() == 0) {
+            while (g1.getTamagolemInCampo().isAlive() && g2.getTamagolemInCampo().isAlive()) {
+                int hp1 = g1.getTamagolemInCampo().getHp();
+                int hp2 = g2.getTamagolemInCampo().getHp();
+
+                UserInterface.annuncioTurno(turno);
+                turno++;
+                turno();
+
+                if (hp1 != g1.getTamagolemInCampo().getHp()) {
+                    UserInterface.annuncioDanni(g2.getTamagolemInCampo(), g1.getTamagolemInCampo(), hp1 - g1.getTamagolemInCampo().getHp());
+                } else if (hp2 != g2.getTamagolemInCampo().getHp()) {
+                    UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), hp2 - g2.getTamagolemInCampo().getHp());
+                } else UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), 0);
+            }
+
+            if (!g1.getTamagolemInCampo().isAlive() && g1.isAvailableTamaGolem()) {
+                UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
+                pietre_1 = UserInterface.getPietre(getScorta(), g1);
+                if (!evocazione(g1, pietre_1)) {
+                    break;
+                }
+            } else if (!g2.getTamagolemInCampo().isAlive() && g2.isAvailableTamaGolem()) {
+                UserInterface.annuncioEliminato(g2.getTamagolemInCampo());
+                pietre_2 = UserInterface.getPietre(getScorta(), g2);
+                if (!evocazione(g2, pietre_2)) {
+                    break;
+                }
+            }
+        }
+        if (checkifPartitaContinua() == -1) {
+            UserInterface.partitaFinita(g2, g1);
+        } else {
+            UserInterface.partitaFinita(g1, g2);
+        }
+
     }
 
 

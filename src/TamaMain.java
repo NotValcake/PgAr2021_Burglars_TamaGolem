@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+/*todo ciclo infinito se potenze uguali*/
 public class TamaMain {
     public static void main(String[] args) {
         UserInterface.startMatch();
@@ -29,7 +29,9 @@ public class TamaMain {
             Giocatore g2 = new Giocatore(t2, g2_name);
 
             Partita p = new Partita(g1, g2, TamaValues.N);
+            //p.faiPartita();
 
+            //todo da qui fino al pezzo del while lo trasferiamo in partita con input in metodo g1 e g2?
             ArrayList<Integer> pietre_1;
             ArrayList<Integer> pietre_2;
 
@@ -46,6 +48,8 @@ public class TamaMain {
             }
             int turno = 1;
 
+
+
             while (p.checkifPartitaContinua() == 0) {
                 while (g1.getTamagolemInCampo().isAlive() && g2.getTamagolemInCampo().isAlive()) {
                     int hp1 = g1.getTamagolemInCampo().getHp();
@@ -61,6 +65,7 @@ public class TamaMain {
                         UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), hp2 - g2.getTamagolemInCampo().getHp());
                     } else UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), 0);
                 }
+
                 if (!g1.getTamagolemInCampo().isAlive() && g1.isAvailableTamaGolem()) {
                     UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
                     pietre_1 = UserInterface.getPietre(p.getScorta(), g1);
@@ -77,10 +82,14 @@ public class TamaMain {
             }
 
             if (p.checkifPartitaContinua() == -1) {
-                UserInterface.partitaFinita(g2, g1);
+                   UserInterface.partitaFinita(g2, g1);
             } else {
                 UserInterface.partitaFinita(g1, g2);
             }
+          //FIXME fino qui
+
+
+
 
             UserInterface.rivelaEquilibrio(p.rivelaEquilibrio());
 
