@@ -29,7 +29,7 @@ public class InputDati
 	  
 	  public static String leggiStringaNonVuota(String messaggio)
 	  {
-	   boolean finito=false;
+	   boolean finito = false;
 	   String lettura = null;
 	   do
 	   {

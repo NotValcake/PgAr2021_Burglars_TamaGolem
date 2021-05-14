@@ -26,7 +26,9 @@ public class Partita {
         generaScorta();
     }
 
-    /**difficolta = num livello (matrice)*/
+    /**
+     * difficolta = num livello (matrice)
+     */
     private void generaScorta() {
         for (int i = 0; i < this.difficolta; i++) {
             this.scorta_pietre.add(TamaValues.PIETRE_PER_ELEMENTO);
@@ -34,7 +36,7 @@ public class Partita {
     }
 
 
-    public ArrayList<Integer> getScorta(){
+    public ArrayList<Integer> getScorta() {
         return this.scorta_pietre;
     }
 
@@ -43,13 +45,14 @@ public class Partita {
         this.equilibrio = new Equilibrio(this.difficolta);
     }
 
-    public int testaOCroce(){
-        return Equilibrio.randomRangeMaxMin(1,0);
+    public int testaOCroce() {
+        return Equilibrio.randomRangeMaxMin(1, 0);
     }
 
     /**
      * assegna pietre al nuovo tamagolem che deve scendere in campo, ogni volta scende in campo il tamagolem ultimo nella fila
-     * @param g giocatore che deve effettuare l'evocazione
+     *
+     * @param g      giocatore che deve effettuare l'evocazione
      * @param pietre arraylist contenente le pietre da dare al tamagolem
      * @return true se l'evocazione va a buon fine, false altrimenti
      */
@@ -60,7 +63,7 @@ public class Partita {
                     g.getTamaGolems().get(i).setPietre(pietre);
                     g.setTamagolemInCampo(i);
                     for (int j = 0; j < pietre.size(); j++) {
-                        scorta_pietre.set(pietre.get(j), scorta_pietre.get(pietre.get(j))-1);
+                        scorta_pietre.set(pietre.get(j), scorta_pietre.get(pietre.get(j)) - 1);
                     }
                     return true;
                 }
@@ -71,6 +74,7 @@ public class Partita {
 
     /**
      * metodo che gestisce un turno della lotta
+     *
      * @return false se un tamagolem viene sconfitto
      */
     public boolean turno() {
@@ -96,16 +100,17 @@ public class Partita {
         return 0;
     }
 
-    public Equilibrio rivelaEquilibrio(){
+    public Equilibrio rivelaEquilibrio() {
         return this.equilibrio;
+
     }
 
-    public int getDifficolta(){
+    public int getDifficolta() {
         return this.difficolta;
+
     }
 
- //fixme faiPartita() cancella metodo se vuoi metterlo in main
-     public void faiPartita(){
+    public void faiPartita() {
         ArrayList<Integer> pietre_1;
         ArrayList<Integer> pietre_2;
 
@@ -113,12 +118,21 @@ public class Partita {
             pietre_1 = UserInterface.getPietre(getScorta(), g1);
             evocazione(g1, pietre_1);
             pietre_2 = UserInterface.getPietre(getScorta(), g2);
+            //se i giocatori scelgono le stesse pietre nello stesso ordine loop infinito
+            while (pietre_1.equals(pietre_2)) {
+                UserInterface.stessePietre();
+                pietre_2 = UserInterface.getPietre(getScorta(), g2);
+            }
             evocazione(g2, pietre_2);
         } else {
             pietre_2 = UserInterface.getPietre(getScorta(), g2);
             evocazione(g2, pietre_2);
             pietre_1 = UserInterface.getPietre(getScorta(), g1);
             evocazione(g1, pietre_1);
+            while (pietre_2.equals(pietre_1)) {
+                UserInterface.stessePietre();
+                pietre_1 = UserInterface.getPietre(getScorta(), g1);
+            }
         }
 
         int turno = 1;
@@ -137,20 +151,13 @@ public class Partita {
                 } else if (hp2 != g2.getTamagolemInCampo().getHp()) {
                     UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), hp2 - g2.getTamagolemInCampo().getHp());
                 } else UserInterface.annuncioDanni(g1.getTamagolemInCampo(), g2.getTamagolemInCampo(), 0);
+                UserInterface.nextTurn();
             }
 
             if (!g1.getTamagolemInCampo().isAlive() && g1.isAvailableTamaGolem()) {
-                UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
-                pietre_1 = UserInterface.getPietre(getScorta(), g1);
-                if (!evocazione(g1, pietre_1)) {
-                    break;
-                }
+                if (canSummon(g1, g2)) break;
             } else if (!g2.getTamagolemInCampo().isAlive() && g2.isAvailableTamaGolem()) {
-                UserInterface.annuncioEliminato(g2.getTamagolemInCampo());
-                pietre_2 = UserInterface.getPietre(getScorta(), g2);
-                if (!evocazione(g2, pietre_2)) {
-                    break;
-                }
+                if (canSummon(g2, g1)) break;
             }
         }
         if (checkifPartitaContinua() == -1) {
@@ -158,7 +165,17 @@ public class Partita {
         } else {
             UserInterface.partitaFinita(g1, g2);
         }
+    }
 
+    private boolean canSummon(Giocatore g1, Giocatore g2) {
+        ArrayList<Integer> pietre_1;
+        UserInterface.annuncioEliminato(g1.getTamagolemInCampo());
+        pietre_1 = UserInterface.getPietre(getScorta(), g1);
+        while (g2.getTamagolemInCampo().getPietre().equals(pietre_1)) {
+            UserInterface.stessePietre();
+            pietre_1 = UserInterface.getPietre(getScorta(), g1);
+        }
+        return !evocazione(g1, pietre_1);
     }
 
 
